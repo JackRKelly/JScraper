@@ -7,8 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
-    private static boolean printUrls(String[] urls) {
-
+    private static boolean printUrls(String url, String[] urls) {
+        System.out.println(url);
+        System.out.println("--- Links Found ---");
+        for (i = 0; i < urls.length; i++) {
+            System.out.println(urls[i]);
+        }
     }
 
     private static boolean validateUrl(String url) {
@@ -29,7 +33,7 @@ public class Main {
         try {
             final Document document = Jsoup.connect(url).get();
             Matches matches = pattern.matches(document);
-            printUrls(matches);
+            printUrls(url, matches);
         } catch (IOException e) {
             e.printStackTrace();
         }
