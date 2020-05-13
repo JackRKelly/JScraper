@@ -1,6 +1,8 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import java.io.IOException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,14 +18,13 @@ public class Main {
         }
     }
 
-    public static void scrapeLinks(String link) {
-        System.out.println(link);
-        try {
-            final Document document = Jsoup.connect(link).get();
+    public static void scrapeLinks(String url) {
+        System.out.println(url);
 
-            System.out.println(document.outerHtml());
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        try {
+            final Document document = Jsoup.connect(url).get();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
