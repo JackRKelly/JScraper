@@ -10,8 +10,8 @@ public class Main {
     private static boolean validateUrl(String url) {
         String urlRegex = "^(http|https)://[-a-zA-Z0-9+&@#/%?=~_|,!:.;]*[-a-zA-Z0-9+@#/%=&_|]";
         Pattern pattern = Pattern.compile(urlRegex);
-        Matcher m = pattern.matcher(url);
-        if (m.matches()) {
+        Matcher matcher = pattern.matcher(url);
+        if (matcher.matches()) {
             return true;
         } else {
             return false;
@@ -19,10 +19,12 @@ public class Main {
     }
 
     public static void scrapeLinks(String url) {
-        System.out.println(url);
-
+        String urlRegex = "<a\\s+(?:[^>]*?\\s+)?href=([\"'])(.*?)\\1";
+        Pattern pattern = Pattern.compile(urlRegex);
+        String[] matchs;
         try {
             final Document document = Jsoup.connect(url).get();
+            Matches matches = pattern.matches(document);
         } catch (IOException e) {
             e.printStackTrace();
         }
