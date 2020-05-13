@@ -1,3 +1,6 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +19,9 @@ public class Main {
     public static void scrapeLinks(String link) {
         System.out.println(link);
         try {
+            final Document document = Jsoup.connect(link).get();
 
+            System.out.println(document.outerHtml());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
